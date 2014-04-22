@@ -27,14 +27,14 @@ public:
     
     virtual boost::any Get( const std::string & /*key*/ ) const
     {
-        throw CPropertyException(CPropertyException::eNoGet);
+        throw CAnyPropertyException(CAnyPropertyException::eNoGet);
         return boost::any();
     }
     
     
     virtual void Set( const std::string & key, const boost::any & /*value*/ )
     {
-        throw CPropertyException(CPropertyException::eNoSet);
+        throw CAnyPropertyException(CAnyPropertyException::eNoSet);
     }
     
     /// Override with a method returning the name of the handler for error

@@ -1,5 +1,5 @@
-#ifndef PROPERTY_EXCEPTION_HPP__
-#define PROPERTY_EXCEPTION_HPP__
+#ifndef ANY_PROPERTY_EXCEPTION_HPP__
+#define ANY_PROPERTY_EXCEPTION_HPP__
 
 #include <string>
 
@@ -14,7 +14,7 @@
  */
 
 
-class CPropertyException
+class CAnyPropertyException
 {
 public:
 	enum EErrCode {
@@ -29,59 +29,59 @@ public:
 		, eDBConnect
 		, eDBStatement
 		, eDBNotUnique
-		, eNoEntryPointInEnv
-		, eBadEntryPoint
-		, eHomeless
 	};
 	
-	CPropertyException( unsigned errorCode ) : m_errorCode(errorCode) {}
+	CAnyPropertyException( unsigned errorCode, std::string extraInfo = "")
+		: m_errorCode(errorCode), m_extraInfo(extraInfo) {}
 
 	virtual std::string GetErrCodeString() const
-	{	
+	{
+		std::string errorString;
 		switch (GetErrCode()) {
-			case eEmptyKey: return "The key provided was empty.";
-			case eNoReadHandler: return "No handler was installed to read this type";
-			case eNoWriteHandler: return "No handler was installed to write this type";
-			case eBadReadType: return "A handler found a type it couldn't write.";
-			case eBadWriteType: return "A handler found a type it couldn't write.";
-			case eFileOpenFailed: return "A file could not be opened.";
-			case eNoGet: return "This handler does not implement Get.";
-			case eNoSet: return "This handler does not implement Set.";
-			case eDBConnect: return "The handler wasn't able to connect to a database.";
-			case eDBStatement: return "A database statement failed.";
-			case eDBNotUnique: return "A database query didn't return exactly one response.";
-			case eNoEntryPointInEnv: return "You must set the entry point environment variable, "
-											"GP_ep, to point at a configuration file.";
-			case eBadEntryPoint: return "The configuration file couldn't be opened.";
-			case eHomeless: return "GP_HOME must be set in the OS environment.";
-			default: return "Unknown property exception with error code "
+			case eEmptyKey: errorString = "The key provided was empty";
+			case eNoReadHandler: errorString = "No handler was installed to read this type";
+			case eNoWriteHandler: errorString = "No handler was installed to write this type";
+			case eBadReadType: errorString = "A handler found a type it couldn't write";
+			case eBadWriteType: errorString = "A handler found a type it couldn't write";
+			case eFileOpenFailed: errorString = "A file could not be opened";
+			case eNoGet: errorString = "This handler does not implement Get";
+			case eNoSet: errorString = "This handler does not implement Set";
+			case eDBConnect: errorString = "The handler wasn't able to connect to a database";
+			case eDBStatement: errorString = "A database statement faile.";
+			case eDBNotUnique: errorString = "A database query didn't return exactly one response";
+			default: errorString = "Unknown property exception with error code "
 								+ std::to_string(GetErrCode());
+			return errorString + ": " + m_extraInfo;
 		}	
 	}
 
 	unsigned GetErrCode() const { return m_errorCode; }
 	
 private:
-	unsigned m_errorCode;	
+	unsigned m_errorCode;
+	
+protected:
+	std::string m_extraInfo;
 };
 
 
-class CPropertyNoKeyException : public CPropertyException
+class CAnyPropertyNoKeyException : public CAnyPropertyException
 {
 public:
 	enum EErrCode {
 		eKeyNotFound
 	};
 
-	CPropertyNoKeyException( unsigned errorCode ) : CPropertyException(errorCode) {}
+	CAnyPropertyNoKeyException( unsigned errorCode, std::string keyName )
+		: CAnyPropertyException(errorCode, keyName) {}
 
 	virtual std::string GetErrCodeString() const
 	{	
 		switch (GetErrCode()) {
-			case eKeyNotFound: return "The key was not found in any handler.";
-			default:	 return CPropertyException::GetErrCodeString();
+			case eKeyNotFound: return "The key was not found in any handler: " + m_extraInfo;
+			default:	 return CAnyPropertyException::GetErrCodeString();
 		}
 	}
 };
 
-#endif	// PROPERTY_EXCEPTION_HPP__
+#endif	// ANY_PROPERTY_EXCEPTION_HPP__

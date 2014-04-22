@@ -44,7 +44,7 @@ public:
         try {
             value = Get<T>( key );
         }
-        catch   ( CPropertyNoKeyException & e ) {
+        catch   ( CAnyPropertyNoKeyException & e ) {
             value = default_value;
         }
         
