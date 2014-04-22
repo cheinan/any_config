@@ -10,15 +10,14 @@
 #include <string>
 #include <map>
 
-#include <boost/boost_any.hpp>
+#include <boost/any.hpp>
+
 #include "TypelistHelper.hpp"
 #include "base.hpp"
 
 
-BEGIN_NCBI_SCOPE
-
 template <typename TValue>
-class CGPAttrHandlerMemory : public CGPAttrHandlerBase
+class CAnyPropertyHandlerMemory : public CHandlerBase
 {
 public:
     virtual boost::any  Get( const std::string & key ) const
@@ -48,7 +47,5 @@ private:
     std::map<std::string, TValue>    m_Map;
 };
 
-
-END_NCBI_SCOPE
 
 #endif  //  ANY_PROPERTY_HANDLER_MEMORY_HPP__

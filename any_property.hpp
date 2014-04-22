@@ -27,7 +27,7 @@
 #include "base.hpp"
 
 
-class CGPipeProperty
+class CAnyProperty
 {
 public:
     typedef     std::shared_ptr<CHandlerBase>    THandlerPtr;

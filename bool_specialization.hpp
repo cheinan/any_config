@@ -7,7 +7,7 @@
 /// more than 0 and 1 that boost::lexical_cast does.  Also, an illustration of
 /// specialization in case you want to do one yourself.
 template<> inline bool
-    CGPipeProperty::GetWithCast<bool, std::string>( const std::string & key ) const
+    CAnyProperty::GetWithCast<bool, std::string>( const std::string & key ) const
 {
 	std::string value = Get<std::string>( key );
 	if (key == "true") return true;
