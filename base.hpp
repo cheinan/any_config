@@ -15,25 +15,25 @@
 
 #include "boost_any.hpp"
 #include "loki_type_info.hpp"
-#include "gpipe_property_exception.hpp"
+#include "any_property_exception.hpp"
 
 
 class CHandlerBase
 {
 public:
-    CGPAttrHandlerBase() {}
-    virtual ~CGPAttrHandlerBase() {}
+    CHandlerBase() {}
+    virtual ~CHandlerBase() {}
     
     virtual boost::any Get( const std::string & /*key*/ ) const
     {
-        throw CPropertyException(eNoGet);
+        throw CPropertyException(CPropertyException::eNoGet);
         return boost::any();
     }
     
     
     virtual void Set( const std::string & key, const boost::any & /*value*/ )
     {
-        throw CPropertyException(eNoSet);
+        throw CPropertyException(CPropertyException::eNoSet);
     }
     
     /// Override with a method returning the name of the handler for error

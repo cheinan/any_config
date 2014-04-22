@@ -1,6 +1,8 @@
 #ifndef PROPERTY_EXCEPTION_HPP__
 #define PROPERTY_EXCEPTION_HPP__
 
+#include <string>
+
 /*
  * This code is based on public domain code from the National Library of
  * Medicine at the US National Institutes of Health
@@ -77,7 +79,7 @@ public:
 	{	
 		switch (GetErrCode()) {
 			case eKeyNotFound: return "The key was not found in any handler.";
-			default:	 return CException::GetErrCodeString();
+			default:	 return CPropertyException::GetErrCodeString();
 		}
 	}
 };
