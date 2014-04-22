@@ -18,10 +18,10 @@
 #include <map>
 #include <typeinfo>
 
-#include "boost_any.hpp"
-#include "loki_type_info.hpp"
-
+#include <boost/any.hpp>
 #include <boost/lexical_cast.hpp>
+
+#include "loki_type_info.hpp"
 
 #include "any_property_exception.hpp"
 #include "base.hpp"

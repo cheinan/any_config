@@ -13,7 +13,8 @@
 #include <string>
 #include <vector>
 
-#include "boost_any.hpp"
+#include <boost/any.hpp>
+
 #include "loki_type_info.hpp"
 #include "any_property_exception.hpp"
 
