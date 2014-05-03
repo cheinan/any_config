@@ -26,9 +26,7 @@ public:
 		, eFileOpenFailed
 		, eNoGet
 		, eNoSet
-		, eDBConnect
-		, eDBStatement
-		, eDBNotUnique
+		, ePutenvFailed
 	};
 	
 	CAnyPropertyException( unsigned errorCode, std::string extraInfo = "")
@@ -46,9 +44,7 @@ public:
 			case eFileOpenFailed: errorString = "A file could not be opened";
 			case eNoGet: errorString = "This handler does not implement Get";
 			case eNoSet: errorString = "This handler does not implement Set";
-			case eDBConnect: errorString = "The handler wasn't able to connect to a database";
-			case eDBStatement: errorString = "A database statement faile.";
-			case eDBNotUnique: errorString = "A database query didn't return exactly one response";
+			case ePutenvFailed: errorString = "Putenv failed.";
 			default: errorString = "Unknown property exception with error code "
 								+ std::to_string(GetErrCode());
 			return errorString + ": " + m_extraInfo;

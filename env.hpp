@@ -9,6 +9,9 @@
  */
 
 #include <cstdlib>
+#include <cstring>
+#include <cerrno>
+
 #include <string>
 
 #include <boost/any.hpp>
@@ -40,10 +43,14 @@ inline boost::any  CAnyHandlerEnv::Get( const std::string & key ) const
 }
 
 
-inline void        CAnyHandlerEnv::Set( const std::string & key, const boost::any & value )
+inline void CAnyHandlerEnv::Set( const std::string & key, const boost::any & value )
 {
-	std::string env_value(key + " " + boost::any_cast<std::string> (value));
-    ::putenv(const_cast<char*>(env_value.c_str()));
+	std::string env_value(key + "=" + boost::any_cast<std::string> (value));
+    int putenvReturn = ::putenv(const_cast<char*>(env_value.c_str()));
+	int savedErrno = errno;
+    if (putenvReturn) {
+		throw CAnyPropertyException(CAnyPropertyException::ePutenvFailed, ::strerror(savedErrno));
+    }
 }
 
 
