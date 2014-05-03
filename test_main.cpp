@@ -27,6 +27,21 @@ int main()
 	catch (CAnyPropertyNoKeyException & e) {
 		std::cerr << "Key \"" << e.GetKeyName() << "\" was not found in the environment!" << std::endl;
 	}
+	
+	try {
+		properties.Set("ENVKEY", "some value");
+	}
+	catch (CAnyPropertyException& e)
+	{
+		std::cerr << "CAnyPropertyException: " << e.GetErrCodeString() << std::endl;
+	}
+
+	try {
+		std::cout << properties.Get<std::string>("ENVKEY") << std::endl;
+	}
+	catch (CAnyPropertyNoKeyException & e) {
+		std::cerr << "Key \"" << e.GetKeyName() << "\" was not found in the environment!" << std::endl;
+	}
 
 	return 0;
 }
