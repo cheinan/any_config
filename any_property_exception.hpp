@@ -73,7 +73,8 @@ public:
 	};
 
 	CAnyPropertyNoKeyException( unsigned errorCode, std::string keyName )
-		: CAnyPropertyException(errorCode, keyName) {}
+		: CAnyPropertyException(errorCode, keyName)
+		, m_keyName(keyName) {}
 
 	virtual std::string GetErrCodeString() const
 	{	
@@ -82,6 +83,11 @@ public:
 			default:	 return CAnyPropertyException::GetErrCodeString();
 		}
 	}
+	
+	std::string GetKeyName() const { return m_keyName; }
+	
+private:
+	std::string m_keyName;
 };
 
 #endif	// ANY_PROPERTY_EXCEPTION_HPP__
