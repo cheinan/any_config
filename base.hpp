@@ -19,11 +19,11 @@
 #include "any_property_exception.hpp"
 
 
-class CHandlerBase
+class CAnyHandlerBase
 {
 public:
-    CHandlerBase() {}
-    virtual ~CHandlerBase() {}
+    CAnyHandlerBase() {}
+    virtual ~CAnyHandlerBase() {}
     
     virtual boost::any Get( const std::string & /*key*/ ) const
     {
@@ -47,8 +47,8 @@ public:
     virtual std::vector<Loki::TypeInfo> GetHandledTypes() const = 0;
 
 private:
-    CHandlerBase(const CHandlerBase&);
-    CHandlerBase& operator=(const CHandlerBase&);
+    CAnyHandlerBase(const CAnyHandlerBase&);
+    CAnyHandlerBase& operator=(const CAnyHandlerBase&);
 };
 
 

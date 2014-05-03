@@ -17,7 +17,7 @@
 
 
 template <typename TValue>
-class CAnyPropertyHandlerMemory : public CHandlerBase
+class CAnyPropertyHandlerMemory : public CAnyHandlerBase
 {
 public:
     virtual boost::any  Get( const std::string & key ) const
