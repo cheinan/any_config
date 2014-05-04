@@ -1,0 +1,21 @@
+{
+    "firstName": "Homer",
+    "lastName": "Simpson",
+    "age": 38,
+    "address": {
+        "streetAddress": "742 Evergreen Terrace",
+        "city": "Springfield",
+        "state": "OR",
+        "postalCode": "96522"
+    },
+    "phoneNumber": [
+        {
+            "type": "home",
+            "number": "939 555-1234"
+        },
+        {
+            "type": "fax",
+            "number": "636 555-4567"
+        }
+    ],
+}
