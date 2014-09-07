@@ -11,7 +11,7 @@ For example, my build line is
 g++ -std=c++11 -I ~/json_spirit/json_spirit_v4.07/ test_main.cpp
 Modify the path after -I to the path where you installed JSON Spirit.
 
-The code has been tested in gcc 4.8.2
+The code has been tested in gcc 4.8.2 and clang 3.4.
 
 C++ Configuration Using Boost Any
 
