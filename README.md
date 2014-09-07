@@ -1,6 +1,18 @@
 any_config
 ==========
 
+To build, you will need to install the JSON Spirit library.
+At the time of writing, JSON Spirit can be downloaded from
+http://www.codeproject.com/Articles/20027/JSON-Spirit-A-C-JSON-Parser-Generator-Implemented
+Once you install the library, you will need to tell the compiler
+where the library headers are located.
+
+For example, my build line is
+g++ -std=c++11 -I ~/json_spirit/json_spirit_v4.07/ test_main.cpp
+Modify the path after -I to the path where you installed JSON Spirit.
+
+The code has been tested in gcc 4.8.2
+
 C++ Configuration Using Boost Any
 
 This code is based on code developed at the United States
